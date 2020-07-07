@@ -23,3 +23,33 @@
 * rockPaperScissors(5); // => [['rock', 'rock', 'rock', 'rock', 'rock'], etc...]
 *
 */
+
+function rockPaperScissors(rounds) {
+  let options = ['rock', 'paper', 'scissors'];
+  if (rounds === 0) {
+    return [];
+  }
+
+  if (rounds === 1) {
+    return options;
+  }
+
+  let outcomes = [];
+
+  function getOutcomes (outcome) {
+    if(outcome.length === rounds) {
+      outcomes.push([...outcome]);
+      return;
+    }
+
+    for (let i = 0; i < options.length; i++) {
+      outcome.push(options[i]);
+      getOutcomes([...outcome]);
+      outcome.pop();
+    }
+  }
+
+  getOutcomes([]);
+
+return outcomes;
+}
